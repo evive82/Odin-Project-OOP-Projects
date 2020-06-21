@@ -8,15 +8,15 @@ class Board
       "\n\n" +
       "o : A color is correct, but in an incorrect place.\n" +
       "* : A correct color is in a correct place.\n\n\n" +
-      "   |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n" +
-      "   | #{hints[1][0]} #{hints[1][1]} | #{hints[2][0]} #{hints[2][1]} | #{hints[3][0]} #{hints[3][1]} | #{hints[4][0]} #{hints[4][1]} | #{hints[5][0]} #{hints[5][1]} | #{hints[6][0]} #{hints[6][1]} | #{hints[7][0]} #{hints[7][1]} | #{hints[8][0]} #{hints[8][1]} | #{hints[9][0]} #{hints[9][1]} | #{hints[10][0]} #{hints[10][1]} |     |\n" +
-      "   | #{hints[1][2]} #{hints[1][3]} | #{hints[2][2]} #{hints[2][3]} | #{hints[3][2]} #{hints[3][3]} | #{hints[4][2]} #{hints[4][3]} | #{hints[5][2]} #{hints[5][3]} | #{hints[6][2]} #{hints[6][3]} | #{hints[7][2]} #{hints[7][3]} | #{hints[8][2]} #{hints[8][3]} | #{hints[9][2]} #{hints[9][3]} | #{hints[10][2]} #{hints[10][3]} |     |\n" +
-      "   |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n" +
-      " 1 |  #{guesses[1][0]}  |  #{guesses[2][0]}  |  #{guesses[3][0]}  |  #{guesses[4][0]}  |  #{guesses[5][0]}  |  #{guesses[6][0]}  |  #{guesses[7][0]}  |  #{guesses[8][0]}  |  #{guesses[9][0]}  |  #{guesses[10][0]}  |  #{answers[0]}  |\n" +
-      " 2 |  #{guesses[1][1]}  |  #{guesses[2][1]}  |  #{guesses[3][1]}  |  #{guesses[4][1]}  |  #{guesses[5][1]}  |  #{guesses[6][1]}  |  #{guesses[7][1]}  |  #{guesses[8][1]}  |  #{guesses[9][1]}  |  #{guesses[10][1]}  |  #{answers[1]}  |\n" +
-      " 3 |  #{guesses[1][2]}  |  #{guesses[2][2]}  |  #{guesses[3][2]}  |  #{guesses[4][2]}  |  #{guesses[5][2]}  |  #{guesses[6][2]}  |  #{guesses[7][2]}  |  #{guesses[8][2]}  |  #{guesses[9][2]}  |  #{guesses[10][2]}  |  #{answers[2]}  |\n" +
-      " 4 |  #{guesses[1][3]}  |  #{guesses[2][3]}  |  #{guesses[3][3]}  |  #{guesses[4][3]}  |  #{guesses[5][3]}  |  #{guesses[6][3]}  |  #{guesses[7][3]}  |  #{guesses[8][3]}  |  #{guesses[9][3]}  |  #{guesses[10][3]}  |  #{answers[3]}  |\n" +
-      "   |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|" +
+      "   |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n" +
+      "   | #{hints[1][0]} #{hints[1][1]} | #{hints[2][0]} #{hints[2][1]} | #{hints[3][0]} #{hints[3][1]} | #{hints[4][0]} #{hints[4][1]} | #{hints[5][0]} #{hints[5][1]} | #{hints[6][0]} #{hints[6][1]} | #{hints[7][0]} #{hints[7][1]} | #{hints[8][0]} #{hints[8][1]} | #{hints[9][0]} #{hints[9][1]} | #{hints[10][0]} #{hints[10][1]} | #{hints[11][0]} #{hints[11][1]} | #{hints[12][0]} #{hints[12][1]} |     |\n" +
+      "   | #{hints[1][2]} #{hints[1][3]} | #{hints[2][2]} #{hints[2][3]} | #{hints[3][2]} #{hints[3][3]} | #{hints[4][2]} #{hints[4][3]} | #{hints[5][2]} #{hints[5][3]} | #{hints[6][2]} #{hints[6][3]} | #{hints[7][2]} #{hints[7][3]} | #{hints[8][2]} #{hints[8][3]} | #{hints[9][2]} #{hints[9][3]} | #{hints[10][2]} #{hints[10][3]} | #{hints[11][2]} #{hints[11][3]} | #{hints[12][2]} #{hints[12][3]} |     |\n" +
+      "   |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n" +
+      " 1 |  #{guesses[1][0]}  |  #{guesses[2][0]}  |  #{guesses[3][0]}  |  #{guesses[4][0]}  |  #{guesses[5][0]}  |  #{guesses[6][0]}  |  #{guesses[7][0]}  |  #{guesses[8][0]}  |  #{guesses[9][0]}  |  #{guesses[10][0]}  |  #{guesses[11][0]}  |  #{guesses[12][0]}  |  #{answers[0]}  |\n" +
+      " 2 |  #{guesses[1][1]}  |  #{guesses[2][1]}  |  #{guesses[3][1]}  |  #{guesses[4][1]}  |  #{guesses[5][1]}  |  #{guesses[6][1]}  |  #{guesses[7][1]}  |  #{guesses[8][1]}  |  #{guesses[9][1]}  |  #{guesses[10][1]}  |  #{guesses[11][1]}  |  #{guesses[12][1]}  |  #{answers[1]}  |\n" +
+      " 3 |  #{guesses[1][2]}  |  #{guesses[2][2]}  |  #{guesses[3][2]}  |  #{guesses[4][2]}  |  #{guesses[5][2]}  |  #{guesses[6][2]}  |  #{guesses[7][2]}  |  #{guesses[8][2]}  |  #{guesses[9][2]}  |  #{guesses[10][2]}  |  #{guesses[11][2]}  |  #{guesses[12][2]}  |  #{answers[2]}  |\n" +
+      " 4 |  #{guesses[1][3]}  |  #{guesses[2][3]}  |  #{guesses[3][3]}  |  #{guesses[4][3]}  |  #{guesses[5][3]}  |  #{guesses[6][3]}  |  #{guesses[7][3]}  |  #{guesses[8][3]}  |  #{guesses[9][3]}  |  #{guesses[10][3]}  |  #{guesses[11][3]}  |  #{guesses[12][3]}  |  #{answers[3]}  |\n" +
+      "   |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|" +
       "\n\n(R)ed, (G)reen, (Y)ellow, (O)range, (B)lack, (W)hite\n\n"
     puts board_template
   end
@@ -53,7 +53,6 @@ class Game
   def initialize
     @game_running = true
     @answer = ['R', 'G', 'Y', 'O', 'B', 'W'].shuffle[0..3]
-    #@answer = ['R', 'G', 'Y', 'O']
     @board = Board.new
     @hint_display = Hash.new([' ', ' ', ' ', ' '])
     @guess_display = Hash.new([' ', ' ', ' ', ' '])
@@ -72,7 +71,7 @@ class Game
       @answer_display = @answer
       self.show_board
       puts "You win!"
-    elsif round == 10
+    elsif round == 12
       @game_running = false
       @answer_display = @answer
       self.show_board
