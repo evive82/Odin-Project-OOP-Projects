@@ -67,7 +67,6 @@ class Game
   def submit_guesses guesses, round
     @guess_display[round] = guesses
     @hint_display[round] = self.get_hints(guesses)
-    #@hint_display[round] = [' ', '*', ' ', ' ']
     if guesses == @answer
       @game_running = false
       @answer_display = @answer
@@ -99,11 +98,46 @@ class Game
   end
 end
 
-game = Game.new
-player = Player.new(game)
-game.show_board
-round_counter = 1
-while game.game_running do
-  player.get_guesses(round_counter)
-  round_counter += 1
+def game_menu
+  system "clear"
+  message = "Welcome to Mastermind! Would you like to be the codebreaker " +
+            "or the codemaker?\n\n" +
+            "(1) Codebreaker\n" +
+            "(2) Codemaker\n" +
+            "(3) Exit"
+  puts message
+  choice = gets.chomp.to_i
+  if choice == 1
+    play_game
+  elsif choice == 2
+    play_game
+  elsif choice == 3
+    return
+  else
+    game_menu
+  end
 end
+
+def play_again
+  puts "Would you like to play again? (y/n)"
+  again = gets.chomp
+  while again.downcase != "y" && again.downcase != "n"
+    puts "Would you like to play again? (y)es or (n)o."
+    again = gets.chomp
+  end
+  return again.downcase == "y" ? true : false
+end
+
+def play_game
+  game = Game.new
+  player = Player.new(game)
+  game.show_board
+  round_counter = 1
+  while game.game_running do
+    player.get_guesses(round_counter)
+    round_counter += 1
+  end
+  game_menu if play_again
+end
+
+game_menu
