@@ -87,7 +87,7 @@ class Computer
       end
     else
       last_guess = previous_guesses[round - 1]
-      hint_spaces = hints[round - 1].select { |i| i == ' ' }.length
+      hint_spaces = hints[round - 1].count(' ')
       if hint_spaces > 0
         discard = last_guess[0..hint_spaces - 1]
         keep = last_guess[hint_spaces..last_guess.length - 1]
