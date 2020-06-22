@@ -45,18 +45,88 @@ class Player
       game.submit_guesses(guess_array, round)
     end
   end
+
+  def make_code place = 1, colors = ['R', 'G', 'Y', 'O', 'B', 'W'], code = []
+    answer = code
+    available_colors = colors
+    system "clear"
+    puts "(R)ed, (G)reen, (Y)ellow, (O)range, (B)lack, (W)hite\n\n" +
+         "Pick a color for place ##{place.to_s}:"
+    color = gets.chomp.upcase
+    until available_colors.include?(color)
+      puts "Either invalid selection or you've already picked that color. Try again."
+      color = gets.chomp.upcase
+    end
+    answer.push(color)
+    available_colors.delete(color)
+    if place < 4
+      self.make_code(place + 1, available_colors, answer)
+    else
+      answer
+    end
+  end
+end
+
+class Computer
+  attr_reader :game
+
+  def initialize game
+    @game = game
+  end
+
+  def get_guesses round
+    guess_array = []
+    potential_guesses = ['R', 'G', 'Y', 'O', 'B', 'W']
+    hints = game.hint_display
+    previous_guesses = game.guess_display
+    if round == 1
+      4.times do
+        guess = potential_guesses[rand(potential_guesses.length)]
+        potential_guesses.delete(guess)
+        guess_array.push(guess)
+      end
+    else
+      last_guess = previous_guesses[round - 1]
+      hint_spaces = hints[round - 1].select { |i| i == ' ' }.length
+      if hint_spaces > 0
+        discard = last_guess[0..hint_spaces - 1]
+        keep = last_guess[hint_spaces..last_guess.length - 1]
+        discard.each { |i| potential_guesses.delete(i) }
+        keep.each { |i| potential_guesses.delete(i) }
+        guess_array = keep
+        hint_spaces.times do
+          guess = potential_guesses[rand(potential_guesses.length)]
+          potential_guesses.delete(guess)
+          guess_array.push(guess)
+        end
+      else
+        guess_array = last_guess.shuffle
+      end
+    end
+    if game.guess_display.values.include?(guess_array)
+      self.get_guesses(round)
+    else
+      sleep(2) # Don't want the game to be over instantly
+      game.submit_guesses(guess_array, round)
+    end
+  end
+
+  def make_code
+    ['R', 'G', 'Y', 'O', 'B', 'W'].shuffle[0..3]
+  end
 end
 
 class Game
-  attr_reader :game_running
+  attr_reader :game_running, :hint_display, :guess_display
+  attr_writer :answer
 
   def initialize
     @game_running = true
-    @answer = ['R', 'G', 'Y', 'O', 'B', 'W'].shuffle[0..3]
     @board = Board.new
     @hint_display = Hash.new([' ', ' ', ' ', ' '])
     @guess_display = Hash.new([' ', ' ', ' ', ' '])
     @answer_display = ['?', '?', '?', '?']
+    @answer
   end
 
   def show_board
@@ -79,7 +149,6 @@ class Game
     else
       self.show_board
     end
-    puts @hints
   end
 
   def get_hints guesses
@@ -107,9 +176,9 @@ def game_menu
   puts message
   choice = gets.chomp.to_i
   if choice == 1
-    play_game
+    play_game(1)
   elsif choice == 2
-    play_game
+    play_game(2)
   elsif choice == 3
     return
   else
@@ -127,13 +196,15 @@ def play_again
   return again.downcase == "y" ? true : false
 end
 
-def play_game
+def play_game choice
   game = Game.new
-  player = Player.new(game)
+  codemaker = choice == 1 ? Computer.new(game) : Player.new(game)
+  codebreaker = choice == 1 ? Player.new(game) : Computer.new(game)
+  game.answer = codemaker.make_code
   game.show_board
   round_counter = 1
   while game.game_running do
-    player.get_guesses(round_counter)
+    codebreaker.get_guesses(round_counter)
     round_counter += 1
   end
   game_menu if play_again
